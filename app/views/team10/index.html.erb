@@ -1,0 +1,39 @@
+<h2>Team10 <h2>
+
+Debug:
+  <table>
+    <tr>
+      <td>Project Titile</td>
+      <td><%= params[:project_id] %>  <br>
+      </td>
+    </tr>
+  </table>
+
+  <hr>
+
+
+<h2><%= l(:label_room_list) %></h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th><%= l(:label_room_name) %></th>
+        <th><%= l(:field_description) %></th>
+        <th><%= l(:field_assigned_to) %></th>
+        <th><%= l(:field_status) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @rooms.each do |room| %>
+        <tr>
+          <td><%= room.id %></td>
+          <td><%= room.name %></td>
+          <td><%= room.description %></td>
+          <td><%= room.owner_id %></td>
+          <td><%= room.room_status_id %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
