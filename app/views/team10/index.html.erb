@@ -21,7 +21,6 @@ Debug:
         <th><%= l(:label_room_name) %></th>
         <th><%= l(:field_description) %></th>
         <th><%= l(:field_assigned_to) %></th>
-        <th><%= l(:field_status) %></th>
       </tr>
     </thead>
     <tbody>
@@ -31,7 +30,6 @@ Debug:
           <td><%= room.name %></td>
           <td><%= room.description %></td>
           <td><%= room.owner_id %></td>
-          <td><%= room.room_status_id %></td>
         </tr>
       <% end %>
     </tbody>

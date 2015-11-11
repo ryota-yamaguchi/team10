@@ -1,1 +1,46 @@
-<h2>RoomController#show</h2>
+<h2><%=  l(:label_room) << ' #' << @room.id.to_s %></h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td><%= l(:label_room_name) %></td>
+      <td ><%= @room.name %></td>
+    </tr>
+    <tr>
+      <td><%= l(:field_description) %></td>
+      <td><%= @room.description %></td>
+    </tr>
+    <tr>
+      <td><%= l(:field_author) %></td>
+      <td><%= @room.author_user.name %></td>
+    </tr>
+    <tr>
+      <td><%= l(:field_assigned_to) %></td>
+      <td><%= @room.owner_user.name%></td>
+    </tr>
+    <tr>
+      <td><%= l(:label_room_open) %></td>
+      <td><%= @room.open %></td>
+    </tr>
+    <tr>
+      <td><%= l(:label_room_use) %></td>
+      <td><%= @room.use %></td>
+    </tr>
+    <tr>
+      <td><%= l(:field_created_on) %></td>
+      <td><%= @room.create_on %></td>
+    </tr>
+    <tr>
+      <td><%= l(:field_updated_on) %></td>
+      <td><%= @room.update_on %></td>
+    </tr>
+    <tr>
+      <td><%= l(:field_closed_on) %></td>
+      <td><%= @room.closed_on %></td>
+    </tr>
+
+</tbody>
+</table>
+<hr>
+<%= link_to l(:label_room_edit), { :action => 'edit', :id => @room.id } %>
+<%= link_to l(:label_room_list), { :action => 'index' } %>

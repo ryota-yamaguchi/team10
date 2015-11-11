@@ -1,0 +1,48 @@
+<%= form_for @room, :html => {:action => :update }  do |f| %>
+
+    <table>
+      <tbody>
+      <tr>
+        <td><%= l(:label_room_name) %></td>
+        <td ><%= f.text_field :name, value: @room.name %></td>
+      </tr>
+      <tr>
+        <td><%= l(:field_description) %></td>
+        <td><%= f.text_field :description, value: @room.description %></td>
+      </tr>
+      <tr>
+        <td><%= l(:field_author) %></td>
+        <td><%= f.collection_select :author_id, @users, :id, :name, :include_blank => true, :selected => @room.author_id %></td>
+      </tr>
+      <tr>
+        <td><%= l(:field_assigned_to) %></td>
+        <td><%= f.collection_select :owner_id, @users, :id, :name, :include_blank => true, :selected => @room.owner_id %></td>
+      </tr>
+      <tr>
+        <td><%= l(:label_room_open) %></td>
+        <td><%= f.check_box :open, value: @room.open %></td>
+      </tr>
+      <tr>
+        <td><%= l(:label_room_use) %></td>
+        <td><%= f.check_box :use, value: @room.use %></td>
+      </tr>
+      <tr>
+        <td><%= l(:field_created_on) %></td>
+        <td><%= @room.create_on %></td>
+      </tr>
+      <tr>
+        <td><%= l(:field_updated_on) %></td>
+        <td><%= @room.update_on %></td>
+      </tr>
+      <tr>
+        <td><%= l(:field_closed_on) %></td>
+        <td><%= @room.closed_on %></td>
+      </tr>
+
+      </tbody>
+    </table>
+
+    <input type="submit"/>
+
+<% end %>
+

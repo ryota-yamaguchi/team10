@@ -1,1 +1,29 @@
-<h2>RoomController#index</h2>
+<h2><%= l(:label_room_list) %></h2>
+
+<%= link_to l(:label_room_create), { :action => 'new' } %>
+
+<table>
+  <thead>
+  <tr>
+    <th>#</th>
+    <th><%= l(:label_room_name) %></th>
+    <th><%= l(:field_description) %></th>
+    <th><%= l(:field_assigned_to) %></th>
+    <th><%= l(:label_details) %></th>
+    <th><%= l(:label_room_edit) %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @rooms.each do |room| %>
+      <tr>
+        <td><%= room.id %></td>
+        <td><%= room.name %></td>
+        <td><%= room.description %></td>
+        <td><%= room.owner_id %></td>
+        <td><%= link_to  l(:label_details), { :action => 'show', :id => room.id } %></td>
+        <td><%= link_to l(:label_room_edit), { :action => 'edit', :id => room.id } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+

@@ -1,1 +1,7 @@
-<h2>RoomController#edit</h2>
+<h2><%=  l(:label_room) << ' #' << @room.id.to_s %></h2>
+
+<%= render 'form' %>
+
+<hr>
+<%= link_to l(:label_details), { :action => 'show', :id => @room.id } %>
+<%= link_to l(:label_room_list), { :action => 'index' } %>
