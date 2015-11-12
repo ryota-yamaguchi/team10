@@ -1,4 +1,3 @@
-<%= form_for @room, :html => {:action => :update }  do |f| %>
 
     <table>
       <tbody>
@@ -20,11 +19,11 @@
       </tr>
       <tr>
         <td><%= l(:label_room_open) %></td>
-        <td><%= f.check_box :open, value: @room.open %></td>
+        <td><%= f.check_box :open, { checked: @room.open }, 'true', 'false' %></td>
       </tr>
       <tr>
         <td><%= l(:label_room_use) %></td>
-        <td><%= f.check_box :use, value: @room.use %></td>
+        <td><%= f.check_box :use, { checked: @room.use,  }, 'true', 'false' %></td>
       </tr>
       <tr>
         <td><%= l(:field_created_on) %></td>
@@ -44,5 +43,4 @@
 
     <input type="submit"/>
 
-<% end %>
 

@@ -1,6 +1,11 @@
 <h2><%=  l(:label_room) << ' #' << @room.id.to_s %></h2>
 
-<%= render 'form' %>
+<%= form_for  [ :project, :team10, @room ], :url => { :action => :update, :id => @room.id } do |f| %>
+
+<%= render 'form' , f: f  %>
+
+<% end %>
+
 
 <hr>
 <%= link_to l(:label_details), { :action => 'show', :id => @room.id } %>

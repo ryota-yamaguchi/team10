@@ -1,4 +1,12 @@
 # English strings go here for Rails i18n
 en:
+  label_room: Conference Room
   label_room_list: Room List
   label_room_name: Room Name
+  label_room_edit: Edit
+  label_room_create: Create new conference room
+  label_room_close: Close
+  label_room_delete: Delete
+  label_room_open: Open
+  label_room_use: Use
+

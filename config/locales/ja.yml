@@ -1,4 +1,12 @@
 # Japanese strings go here for Rails i18n
 ja:
+  label_room: 会議室
   label_room_list: 開催中の会議室
   label_room_name: 会議室名
+  label_room_edit: 修正
+  label_room_create: 新しい会議室を作成する
+  label_room_close: 終了
+  label_room_delete: 削除
+  label_room_open: 開催状況
+  label_room_use: 利用可否
+

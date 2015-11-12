@@ -1,1 +1,13 @@
-<h2>RoomController#new</h2>
+<h2><%= l(:label_room_edit) %></h2>
+
+
+<%= form_for  [ :project, :team10, @room ] do |f| %>
+
+    <%= render 'form', f: f  %>
+
+<% end %>
+
+
+<hr>
+
+<%= link_to l(:label_room_list), { :action => 'index' } %>

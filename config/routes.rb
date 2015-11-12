@@ -7,10 +7,7 @@ Rails.application.routes.draw do
     get 'team10', :to => 'team10#index'
 
     namespace :team10 do
-      resources :room, controller: '/room'
+      resources :rooms  , controller: '/room'
     end
-
   end
-
-
 end
