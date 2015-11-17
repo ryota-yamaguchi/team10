@@ -1,46 +1,70 @@
+ <table>
+   <tbody>
+     <tr>
+       <td><%= l(:field_project) %></td>
+       <td><%= @room.project_name %></td>
+     </tr>
+     <tr>
+       <td><%= l(:label_room_name) %></td>
+       <td ><%= if readonly_option then
+                  @room.name
+                else
+                  f.text_field :name, value: @room.name, readonly: readonly_option
+                end
+       %></td>
+     </tr>
+     <tr>
+       <td><%= l(:field_description) %></td>
+       <td><%= if readonly_option then
+                 @room.description
+               else
+                 f.text_field :description, value: @room.description, readonly: readonly_option
+               end
+       %></td>
+     </tr>
+     <tr>
+       <td><%= l(:field_author) %></td>
+       <td><%= @room.author_user %></td>
+     </tr>
+     <tr>
+       <td><%= l(:field_assigned_to) %></td>
+       <td>
+         <%= if readonly_option then
+               @room.owner_user
+             else
+               f.collection_select :owner_id, @users, :id, :name, { include_blank: true, selected: @room.owner_id }
+             end
+         %></td>
+     </tr>
+     <tr>
+       <td><%= l(:label_room_open) %></td>
+       <td><%= f.check_box :open, { checked: @room.open, disabled: readonly_option }, 'true', 'false' %></td>
+     </tr>
+     <tr>
+       <td><%= l(:label_room_use) %></td>
+       <td><%= f.check_box :use, { checked: @room.use, disabled: if @room.open then true else readonly_option end   }, 'true', 'false' %></td>
+     </tr>
+     <tr>
+       <td><%= l(:field_created_on) %></td>
+       <td><%= @room.create_on %></td>
+     </tr>
+     <tr>
+       <td><%= l(:field_updated_on) %></td>
+       <td><%= @room.update_on %></td>
+     </tr>
+     <tr>
+       <td><%= l(:field_closed_on) %></td>
+       <td><%= @room.closed_on %></td>
+     </tr>
+   </tbody>
+ </table>
 
-    <table>
-      <tbody>
-      <tr>
-        <td><%= l(:label_room_name) %></td>
-        <td ><%= f.text_field :name, value: @room.name %></td>
-      </tr>
-      <tr>
-        <td><%= l(:field_description) %></td>
-        <td><%= f.text_field :description, value: @room.description %></td>
-      </tr>
-      <tr>
-        <td><%= l(:field_author) %></td>
-        <td><%= f.collection_select :author_id, @users, :id, :name, :include_blank => true, :selected => @room.author_id %></td>
-      </tr>
-      <tr>
-        <td><%= l(:field_assigned_to) %></td>
-        <td><%= f.collection_select :owner_id, @users, :id, :name, :include_blank => true, :selected => @room.owner_id %></td>
-      </tr>
-      <tr>
-        <td><%= l(:label_room_open) %></td>
-        <td><%= f.check_box :open, { checked: @room.open }, 'true', 'false' %></td>
-      </tr>
-      <tr>
-        <td><%= l(:label_room_use) %></td>
-        <td><%= f.check_box :use, { checked: @room.use,  }, 'true', 'false' %></td>
-      </tr>
-      <tr>
-        <td><%= l(:field_created_on) %></td>
-        <td><%= @room.create_on %></td>
-      </tr>
-      <tr>
-        <td><%= l(:field_updated_on) %></td>
-        <td><%= @room.update_on %></td>
-      </tr>
-      <tr>
-        <td><%= l(:field_closed_on) %></td>
-        <td><%= @room.closed_on %></td>
-      </tr>
+ <%= f.hidden_field :author_id, value: @room.author_id %>
+ <%= f.hidden_field :project_id, value: @room.project_id %>
 
-      </tbody>
-    </table>
-
-    <input type="submit"/>
+ <%= if !readonly_option then
+       f.submit( l( :button_apply ), disabled: readonly_option )
+     end
+ %>
 
 

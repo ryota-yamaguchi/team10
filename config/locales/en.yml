@@ -1,5 +1,6 @@
 # English strings go here for Rails i18n
 en:
+  # Label/Fieald for Team10
   label_room: Conference Room
   label_room_list: Room List
   label_room_name: Room Name
@@ -9,4 +10,14 @@ en:
   label_room_delete: Delete
   label_room_open: Open
   label_room_use: Use
+
+  # Message for Team10
+  msg_room_create_success: Room was successfully create.
+  msg_room_update_success: Room was successfully update.
+  msg_room_destroy_success: Room was successfully destroy.
+  msg_room_create_failed: Room was failed create.
+  msg_room_update_failed: Room was failed update.
+  msg_room_destroy_failed: Room was failed destroy.
+
+
 

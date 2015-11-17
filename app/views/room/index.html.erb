@@ -1,3 +1,4 @@
+<
 <h2><%= l(:label_room_list) %></h2>
 
 <%= link_to l(:label_room_create), { :action => 'new' } %>
@@ -9,19 +10,23 @@
     <th><%= l(:label_room_name) %></th>
     <th><%= l(:field_description) %></th>
     <th><%= l(:field_assigned_to) %></th>
+    <th><%= l(:label_room_open) %></th>
     <th><%= l(:label_details) %></th>
     <th><%= l(:label_room_edit) %></th>
+    <th><%= l(:label_deleted) %></th>
   </tr>
   </thead>
   <tbody>
   <% @rooms.each do |room| %>
-      <tr>
-        <td><%= room.id %></td>
-        <td><%= room.name %></td>
-        <td><%= room.description %></td>
-        <td><%= room.owner_id %></td>
-        <td><%= link_to  l(:label_details), { :action => 'show', :id => room.id } %></td>
-        <td><%= link_to l(:label_room_edit), { :action => 'edit', :id => room.id } %></td>
+    <tr>
+      <td><%= room.id %></td>
+      <td><%= room.name %></td>
+      <td><%= room.description %></td>
+      <td><%= room.owner_user %></td>
+      <td><%= if room.open then l( :label_room_open_on ) else l( :label_room_open_off ) end  %></td>
+      <td><%= link_to  l(:label_details), { :action => 'show', :id => room.id } %></td>
+      <td><%= link_to l(:label_room_edit), { :action => 'edit', :id => room.id } %></td>
+      <td><%= link_to_if !room.open, if !room.open then l(:label_deleted) end, { :action => 'destroy', :id => room.id } , :method => :delete  %></td>
       </tr>
   <% end %>
   </tbody>

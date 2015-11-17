@@ -1,5 +1,6 @@
 # Japanese strings go here for Rails i18n
 ja:
+  # Label/Fieald for Team10
   label_room: 会議室
   label_room_list: 開催中の会議室
   label_room_name: 会議室名
@@ -9,4 +10,14 @@ ja:
   label_room_delete: 削除
   label_room_open: 開催状況
   label_room_use: 利用可否
+  label_room_open_on: 開催中
+  label_room_open_off: 終了
+
+  # Message for Team10
+  msg_room_create_success: 会議室を作成しました
+  msg_room_update_success: 会議室を更新しました
+  msg_room_destroy_success: 会議室を削除しました
+  msg_room_create_failed: 会議室の作成に失敗しました
+  msg_room_update_failed: 会議室の更新に失敗しました
+  msg_room_destroy_failed: 会議室の削除に失敗しました
 
