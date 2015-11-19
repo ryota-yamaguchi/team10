@@ -9,7 +9,7 @@ class RoomController < ApplicationController
   def index
 
     # 開催中の会議室を取得
-    @rooms = Room.where( use: true )
+    @rooms = Room.where( use: true ).where( project_id: @project.id )
 
   end
 
@@ -39,23 +39,28 @@ class RoomController < ApplicationController
 
   def create
 
-    timenow = Time.now
-
-    # 更新時間の取得
+    # Roomの作成
     @room = Room.new( room_params )
+
+    # 初期値セット
+    @room.use = true
+
+    # 作成、更新時間の取得
+    timenow = Time.now
     @room.create_on = timenow
     @room.update_on = timenow
     @room.closed_on = if params[:room][:use] == 'true' then nil  else timenow end
 
-    # 更新処理
+    # 作成処理
     respond_to do |format|
 
-      if @room.save
+      if @room.save then
         format.html { redirect_to project_team10_rooms_path, notice: l(:msg_room_create_success) }
         format.json { render action: 'show', status: :created, location: @room,  notice: l(:msg_room_create_success) }
       else
         @updateresult = 'false'
-        format.html { render redirect_to_referer_or project_team10_room_path( :id=>@room.id ), notice: :msg_room_create_failed}
+        flash[:error] = l(:msg_room_create_failed) + @room.errors.full_messages.to_s
+        format.html { redirect_to :back   }
         format.json { render json: @room.errors }
       end
 
@@ -76,10 +81,11 @@ class RoomController < ApplicationController
 
       if @room.update(room_params)
         format.html { redirect_to project_team10_room_path( :id=>@room.id, :action=>:show ), notice: l(:msg_room_update_success) }
-        format.json { render action: 'show', status: :created, location: @room,  notice: l(:msg_room_update_success) }
+        format.json { render action: 'show', status: :created, location: @room,  notice: l(:msg_room_update_success) + @room.errors.full_messages.to_s }
       else
         @updateresult = 'false'
-        format.html { render redirect_to_referer_or project_team10_room_path( :id=>@room.id ), notice: l(:msg_room_update_failed)}
+        flash[:error] = l(:msg_room_update_failed) + @room.errors.full_messages.to_s
+        format.html { redirect_to :back }
         format.json { render json: @room.errors }
       end
     end
@@ -95,10 +101,11 @@ class RoomController < ApplicationController
 
       if @room.update( :use => false, :update_on => timenow, :closed_on => timenow )
         format.html { redirect_to project_team10_rooms_path, notice: l(:msg_room_destroy_success) }
-        format.json { render action: 'show', status: :created, location: @room,  notice: l(:msg_room_destroy_success) }
+        format.json { render action: 'show', status: :created, location: @room,  notice: l(:msg_room_destroy_success) + @room.errors.full_messages.to_s }
       else
         @updateresult = 'false'
-        format.html { render redirect_to_referer_or project_team10_room_path( :id=>@room.id ), notice: :msg_room_destroy_failed}
+        flash[:error] = l(:msg_room_destroy_failed) + @room.errors.full_messages.to_s
+        format.html { redirect_to :back }
         format.json { render json: @room.errors }
       end
     end
@@ -131,4 +138,5 @@ class RoomController < ApplicationController
     @users = User.all
 
   end
+
 end
